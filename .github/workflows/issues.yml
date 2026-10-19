@@ -1,12 +1,11 @@
 name: Handle Issues
-on: push
-defaults:
-  run:
-    working-directory: exercise
+on: issues
 
 jobs:
   output-info:
     runs-on: ubuntu-latest
     steps:
       - name: Output Event Details
-        run: echo "${{toJSON(github.event)}}"
+        env:
+          EVENT_JSON: ${{ toJSON(github.event) }}
+        run: echo "$EVENT_JSON"
